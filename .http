@@ -1,0 +1,21 @@
+GET http://localhost:5000/api/posts
+
+# DELETE http://localhost:5000/api/posts/comment/623a72d128228e0c89f36d9a/623b3640e150db52ef7ca256
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzRjNzYxN2VmMWQ3YmNmMmRhNWYyMSIsIm5hbWUiOiJXZW5keSIsImF2YXRhciI6Ii8vd3d3LmdyYXZhdGFyLmNvbS9hdmF0YXIvNmM0MmYzNTYwMzhmYTA0YTY4ZjZkYTIyZGFmMDhjYjc_cz0yMDAmcj1wZyZkPW1tIiwiaWF0IjoxNjQ4MDQ3MzQ4LCJleHAiOjE2NDgwNTA5NDh9.GTFkPrEKl3qKobP9FBLY3KCFMQbdI0kE7XmqIFNxMsQ
+
+# POST http://localhost:5000/api/users/login
+# content-type: application/json
+
+# # {
+# #     "email": "paxian.solutions@gmail.com",
+# #     "password": "123456"
+# # }
+
+# {
+#     "email": "wendy.mauryn13@gmail.com",
+#     "password": "1234"
+# }
+
+DELETE  http://localhost:5000/api/posts/comment/623a72d128228e0c89f36d9a/623b405038e43e189f2ea55e
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzRjNzYxN2VmMWQ3YmNmMmRhNWYyMSIsIm5hbWUiOiJXZW5keSIsImF2YXRhciI6Ii8vd3d3LmdyYXZhdGFyLmNvbS9hdmF0YXIvNmM0MmYzNTYwMzhmYTA0YTY4ZjZkYTIyZGFmMDhjYjc_cz0yMDAmcj1wZyZkPW1tIiwiaWF0IjoxNjQ4MDQ5Nzc0LCJleHAiOjE2NDgwNTMzNzR9.lqg4lBJjLXQTwXKHbTNHaakznwPboqrn6Uh0lbudFSg
