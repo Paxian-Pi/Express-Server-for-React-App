@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 // Define Routes
 const users = require('./routes/api/users');
@@ -10,8 +11,15 @@ const passport = require('passport');
 
 const app = express();
 
+const corsOptions = {
+    origin: '*',
+    credentials: true,
+    optionSuccessStatus: 200
+}
+app.use(cors(corsOptions));
+
 // Body paser middleware
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Db Config
@@ -24,7 +32,7 @@ mongoose.connect(db)
 
 // app.get('/', (req, res) => res.send('Hello World'));
 
-// Passport middleware
+// Passport middleware initialization
 app.use(passport.initialize());
 
 // Passport Config

@@ -9,18 +9,18 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = keys.secretOrKey;
 
 module.exports = passport => {
-    passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
-        // console.log(jwt_payload);
+    passport.use(new JwtStrategy(opts, (verified_payload, done) => {
+        // console.log(verified_payload);
 
-        User.findById(jwt_payload.id)
-        .then(user => {
-            if(user) {
-                return done(null, user);
-            }
-            else {
-                return done(null, false);
-            }
-        })
-        .catch(err => console.log(err));
+        User.findById(verified_payload.id)
+            .then(user => {
+                if (user) {
+                    return done(null, user);
+                }
+                else {
+                    return done(null, false);
+                }
+            })
+            .catch(err => console.log(err));
     }))
 };

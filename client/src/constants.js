@@ -1,0 +1,1 @@
+export const JW_TOKEN = 'jw_token';
