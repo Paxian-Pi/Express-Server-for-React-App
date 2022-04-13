@@ -1,30 +1,35 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../actions/authActions'
+import { clearProfile } from '../../actions/profileActions';
 
 function Navbar() {
 
+    const [isLoggedout, setIsLoggedout] = useState(false);
+
     const isAuthenticated = useSelector((state) => state.auth.value.isAuthenticated);
+    
     const user = useSelector((state) => state.auth.value.user);
 
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
-
+    
     const handleLogout = (e) => {
         e.preventDefault();
 
         logoutUser(dispatch);
+        
+        clearProfile(dispatch);
 
-        // Redirect to login page on logout
-        window.location.href = '/login';
+        setIsLoggedout(true);
     }
 
-    // Redirect to login page on logout: this method has poor UX side effect
-    // useEffect(() => {
-    //     if(!isAuthenticated) navigate('/login');
-    // }, [!isAuthenticated]);
+    // Redirect to login page on logout
+    useEffect(() => {
+        if(isLoggedout) navigate('/login');
+    }, [isLoggedout]);
 
     const authLinks = (
         <ul className="navbar-nav ml-auto">

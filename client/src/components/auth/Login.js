@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getErrors } from '../../features/errorSlice'
 import { loginUser } from '../../actions/authActions'
+import TextFieldGroup from '../common/TextFieldGroup'
 
 function Login() {
 
@@ -46,26 +47,23 @@ function Login() {
                         <h1 className="display-4 text-center">Log In</h1>
                         <p className="lead text-center">Sign in to your DevConnector account</p>
                         <form onSubmit={submitHandler}>
-                            <div className="form-group">
-                                <input
-                                    type="email"
-                                    className={classnames("form-control form-control-lg", { "is-invalid": errors.email })}
-                                    placeholder="Email Address"
-                                    name="email"
-                                    ref={emailInput}
-                                />
-                                {errors.email && (<div className='invalid-feedback'>{errors.email}</div>)}
-                            </div>
-                            <div className="form-group">
-                                <input
-                                    type="password"
-                                    className={classnames("form-control form-control-lg", { "is-invalid": errors.password })}
-                                    placeholder="Password"
-                                    name="password"
-                                    ref={passwordInput}
-                                />
-                                {errors.password && (<div className='invalid-feedback'>{errors.password}</div>)}
-                            </div>
+                            
+                            <TextFieldGroup
+                                placeholder='Email Address'
+                                type='email'
+                                name='email'
+                                refInput={emailInput}
+                                error={errors.email}
+                            />
+                            
+                            <TextFieldGroup
+                                placeholder='Password'
+                                type='password'
+                                name='password'
+                                refInput={passwordInput}
+                                error={errors.password}
+                            />
+
                             <input type="submit" className="btn btn-info btn-block mt-4" />
                         </form>
                     </div>

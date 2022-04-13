@@ -9,6 +9,7 @@ import { registerUser } from '../../actions/authActions'
 import { useSelector, useDispatch } from 'react-redux'
 import { register } from '../../features/authSlice'
 import { getErrors } from '../../features/errorSlice'
+import TextFieldGroup from '../common/TextFieldGroup'
 
 function Register(props) {
 
@@ -27,7 +28,7 @@ function Register(props) {
 
     // Prevent veto navigtion to either Login or Register page, if isAuthenticated
     useEffect(() => {
-        if(isAuthenticated) navigate('/dashboard');
+        if (isAuthenticated) navigate('/dashboard');
     }, [isAuthenticated]);
 
     const dispatch = useDispatch();
@@ -65,56 +66,40 @@ function Register(props) {
                         <h1 className="display-4 text-center">Sign Up</h1>
                         <p className="lead text-center">Create your DevConnector account</p>
                         <form noValidate onSubmit={submitHandler}>
-                            <div className="form-group">
-                                <input
-                                    type="text"
-                                    // Do 'npm install classnames' for  conditionals on 'className'
-                                    className={classnames("form-control form-control-lg", { "is-invalid": errors.name })}
-                                    placeholder="Name"
-                                    name="name"
-                                    // value={name}
-                                    // onChange={(e) => setName(e.target.value)}
-                                    ref={nameInput}
-                                />
-                                {errors.name && (<div className='invalid-feedback'>{errors.name}</div>)}
-                            </div>
-                            <div className="form-group">
-                                <input
-                                    type="email"
-                                    className={classnames("form-control form-control-lg", { "is-invalid": errors.email })}
-                                    placeholder="Email Address"
-                                    name="email"
-                                    // value={email}
-                                    // onChange={(e) => setEmail(e.target.value)}
-                                    ref={emailInput}
-                                />
-                                {errors.email && (<div className='invalid-feedback'>{errors.email}</div>)}
-                                <small className="form-text text-muted">This site uses Gravatar so if you want a profile image, use a Gravatar email</small>
-                            </div>
-                            <div className="form-group">
-                                <input
-                                    type="password"
-                                    className={classnames("form-control form-control-lg", { "is-invalid": errors.password })}
-                                    placeholder="Password"
-                                    name="password"
-                                    // value={password}
-                                    // onChange={(e) => setPassword(e.target.value)}
-                                    ref={passwordInput}
-                                />
-                                {errors.password && (<div className='invalid-feedback'>{errors.password}</div>)}
-                            </div>
-                            <div className="form-group">
-                                <input
-                                    type="password"
-                                    className={classnames("form-control form-control-lg", { "is-invalid": errors.password2 })}
-                                    placeholder="Confirm Password"
-                                    name="password2"
-                                    // value={password2}
-                                    // onChange={(e) => setPassword2(e.target.value)}
-                                    ref={password2Input}
-                                />
-                                {errors.password2 && (<div className='invalid-feedback'>{errors.password2}</div>)}
-                            </div>
+
+                            <TextFieldGroup
+                                placeholder='Name'
+                                type='text'
+                                name='name'
+                                refInput={nameInput}
+                                error={errors.name}
+                            />
+
+                            <TextFieldGroup
+                                placeholder='Email Address'
+                                type='email'
+                                name='email'
+                                refInput={emailInput}
+                                error={errors.email}
+                                info='This site uses Gravatar so if you want a profile image, use a Gravatar email'
+                            />
+
+                            <TextFieldGroup
+                                placeholder='Password'
+                                type='password'
+                                name='password'
+                                refInput={passwordInput}
+                                error={errors.password}
+                            />
+                            
+                            <TextFieldGroup
+                                placeholder='Confirm Password'
+                                type='password'
+                                name='password2'
+                                refInput={password2Input}
+                                error={errors.password2}
+                            />
+                            
                             <input type="submit" className="btn btn-info btn-block mt-4" />
                         </form>
                     </div>
