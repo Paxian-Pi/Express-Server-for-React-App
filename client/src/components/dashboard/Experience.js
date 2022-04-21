@@ -27,7 +27,7 @@ const Experience = ({ exp }) => {
                     <tr>
                         <th>Company</th>
                         <th>Title</th>
-                        <th>Years</th>
+                        <th>Duration</th>
                         <th />
                     </tr>
                     {experience}

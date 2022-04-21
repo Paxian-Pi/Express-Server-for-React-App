@@ -6,7 +6,7 @@ import { deleteEducation } from '../../actions/profileActions'
 const Education = ({ edu }) => {
 
     const dispatch = useDispatch()
-    
+
     const education = edu.map(education => (
         <tr key={education._id}>
             <td>{education.school}</td>
@@ -27,7 +27,7 @@ const Education = ({ edu }) => {
                     <tr>
                         <th>School</th>
                         <th>Degree</th>
-                        <th>Years</th>
+                        <th>Duration</th>
                         <th />
                     </tr>
                     {education}

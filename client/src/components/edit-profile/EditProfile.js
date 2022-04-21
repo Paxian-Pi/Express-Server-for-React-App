@@ -29,7 +29,7 @@ const EditProfile = () => {
     const [facebook, setFacebook] = useState('');
     const [linkedin, setLinkedin] = useState('');
     const [youTube, setYouTube] = useState('');
-    const [instagram, setInstgram] = useState('');
+    const [instagram, setInstagram] = useState('');
 
     const [checkProfileState, setCheckProfileState] = useState(true)
 
@@ -75,7 +75,7 @@ const EditProfile = () => {
             setTwitter(profileTwitter)
             setFacebook(profileFacebook)
             setLinkedin(profileLinkedin)
-            setLinkedin(profileInstagram)
+            setInstagram(profileInstagram)
             setYouTube(profileYouTube)
 
         }
@@ -147,7 +147,7 @@ const EditProfile = () => {
                     name='instagram'
                     icon='fab fa-instagram'
                     value={instagram}
-                    onChange={(e) => setInstgram(e.target.value)}
+                    onChange={(e) => setInstagram(e.target.value)}
                     error={errors.instgram}
                 />
             </div>
