@@ -10,8 +10,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { register } from '../../features/authSlice'
 import { getErrors } from '../../features/errorSlice'
 import TextFieldGroup from '../common/TextFieldGroup'
+import ShowModalSingleAction from '../common/ShowModalSingleAction'
 
-function Register(props) {
+const Register = (props) => {
 
     // const [name, setName] = useState();
     // const [email, setEmail] = useState();
@@ -22,7 +23,7 @@ function Register(props) {
 
     const navigate = useNavigate();
 
-    const errors = useSelector((state) => state.error.value);
+    const errors = useSelector((state) => state.error.value)
 
     const isAuthenticated = useSelector((state) => state.auth.value.isAuthenticated);
 
@@ -50,12 +51,31 @@ function Register(props) {
 
         // dispatch(register(newUser));
 
-        registerUser(newUser, dispatch, navigate);
+        registerUser(newUser, dispatch, navigate)
+        setShow(true)
 
         // axios
         //     .post('/api/users/register', newUser)
         //     .then(res => navigate('/login'))
         //     .catch(err => dispatch(getErrors(err.response.data)));
+    }
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false)
+
+    let showModal;
+
+    if (errors.error) {
+        showModal = (
+            <ShowModalSingleAction
+                show={show}
+                title='Error'
+                body={errors.error}
+                handler={handleClose}
+                positiveButton='Close'
+            />
+        )
     }
 
     return (
@@ -99,6 +119,8 @@ function Register(props) {
                                 refInput={password2Input}
                                 error={errors.password2}
                             />
+
+                            {showModal}
                             
                             <input type="submit" className="btn btn-info btn-block mt-4" />
                         </form>

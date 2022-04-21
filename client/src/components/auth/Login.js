@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRef } from 'react'
 import axios from 'axios'
 import classnames from 'classnames'
@@ -7,13 +7,16 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getErrors } from '../../features/errorSlice'
 import { loginUser } from '../../actions/authActions'
 import TextFieldGroup from '../common/TextFieldGroup'
+import { Button } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
+import ShowModalSingleAction from '../common/ShowModalSingleAction'
 
-function Login() {
 
+const Login = () => {
 
     const navigate = useNavigate();
 
-    const errors = useSelector((state) => state.error.value);
+    const errors = useSelector((state) => state.error.value)
 
     const isAuthenticated = useSelector((state) => state.auth.value.isAuthenticated);
     console.log(isAuthenticated);
@@ -28,7 +31,7 @@ function Login() {
     const emailInput = useRef();
     const passwordInput = useRef();
 
-    function submitHandler(event) {
+    const submitHandler = (event) => {
         event.preventDefault();
 
         const user = {
@@ -36,7 +39,25 @@ function Login() {
             password: passwordInput.current.value
         }
 
-        loginUser(user, dispatch);
+        loginUser(user, dispatch)
+        setShow(true)
+    }
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false)
+
+    let showModal;
+
+    if (errors.error) {
+        showModal = (
+            <ShowModalSingleAction
+                show={show}
+                title='Error'
+                body={errors.error}
+                handler={handleClose}
+            />
+        )
     }
 
     return (
@@ -47,7 +68,7 @@ function Login() {
                         <h1 className="display-4 text-center">Log In</h1>
                         <p className="lead text-center">Sign in to your DevConnector account</p>
                         <form onSubmit={submitHandler}>
-                            
+
                             <TextFieldGroup
                                 placeholder='Email Address'
                                 type='email'
@@ -55,7 +76,7 @@ function Login() {
                                 refInput={emailInput}
                                 error={errors.email}
                             />
-                            
+
                             <TextFieldGroup
                                 placeholder='Password'
                                 type='password'
@@ -63,6 +84,8 @@ function Login() {
                                 refInput={passwordInput}
                                 error={errors.password}
                             />
+
+                            {showModal}
 
                             <input type="submit" className="btn btn-info btn-block mt-4" />
                         </form>

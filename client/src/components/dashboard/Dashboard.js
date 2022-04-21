@@ -2,7 +2,11 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { getCurrentProfile } from '../../actions/profileActions';
+import { deleteAccount } from '../../actions/profileActions';
 import Spinner from '../common/Spinner';
+import Education from './Education';
+import Experience from './Experience';
+import ProfileActions from './ProfileActions';
 
 const Dashboard = () => {
 
@@ -10,9 +14,10 @@ const Dashboard = () => {
 
     const dispatch = useDispatch();
 
-    const { profile, loading } = useSelector((state) => state.profile.value);
+    const { profile, loading } = useSelector((state) => state.profile.value)
+    // console.log(profile)
 
-    const { user, isAuthenticated } = useSelector((state) => state.auth.value);
+    const { user, isAuthenticated } = useSelector((state) => state.auth.value)
 
     let dashboardContent;
 
@@ -27,21 +32,37 @@ const Dashboard = () => {
         getCurrentProfile(dispatch);
     }, []);
 
+    // Delete account
+    const onDeleteProfileHandler = () => {
+        deleteAccount(dispatch);
+    }
+
     if (profile === null || loading) dashboardContent = <Spinner />
     else {
-        // Check if logged in user has profile data
+        // Check if logged-in user has profile data
         if (Object.keys(profile).length > 0) {
-            dashboardContent = <h4>TODO: Dispaly profile</h4>
+            dashboardContent = (
+                <div>
+                    <p className="lead text-muted">Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link></p>
+                    <ProfileActions />
+                    <Experience exp={profile.experience} />
+                    <Education edu={profile.education} />
+
+                    <div style={{ marginBottom: '60px' }} />
+
+                    <button onClick={onDeleteProfileHandler} className="btn btn-danger">Delete My Account</button>
+                </div>
+            )
         }
         else {
-            // User is logged in but has no profile
+            // User is logged-in but has no profile
             dashboardContent = (
                 <div>
                     <p className="lead text-muted">Welcome {user.name}</p>
                     <p>You have not yet setup a profile, please  add some info!</p>
                     <Link to='/create-profile' className='btn btn-lg btn-info'>Create Profile</Link>
                 </div>
-            );
+            )
         }
     }
 

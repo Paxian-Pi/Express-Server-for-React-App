@@ -11,7 +11,7 @@ export const registerUser = (userData, dispatch, navigate) => {
 
     axios
         .post('/api/users/register', userData)
-        .then(res => navigate('/login'))
+        .then(() => navigate('/login'))
         .catch(err => dispatch(getErrors(err.response.data)));
 }
 

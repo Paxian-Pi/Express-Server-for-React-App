@@ -20,19 +20,14 @@ export const authSlice = createSlice({
     name: "auth",
     initialState: { value: initialState },
     reducers: {
-        // register: (state, action) => {
-        //     state.value = action.payload;
-        // },
 
         setCurrentUser: (state, action) => {
-            state.value = { 
-                isAuthenticated: !isEmpty(action.payload),
-                user: action.payload
-             }
+            state.value.isAuthenticated = !isEmpty(action.payload)
+            state.value.user = action.payload
         }
     }
 });
 
-export const { register, setCurrentUser } = authSlice.actions;
+export const { setCurrentUser } = authSlice.actions;
 
 export default authSlice.reducer;

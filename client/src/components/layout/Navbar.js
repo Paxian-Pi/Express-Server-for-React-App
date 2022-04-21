@@ -9,18 +9,18 @@ function Navbar() {
     const [isLoggedout, setIsLoggedout] = useState(false);
 
     const isAuthenticated = useSelector((state) => state.auth.value.isAuthenticated);
-    
+
     const user = useSelector((state) => state.auth.value.user);
 
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
-    
+
     const handleLogout = (e) => {
         e.preventDefault();
 
         logoutUser(dispatch);
-        
+
         clearProfile(dispatch);
 
         setIsLoggedout(true);
@@ -28,11 +28,14 @@ function Navbar() {
 
     // Redirect to login page on logout
     useEffect(() => {
-        if(isLoggedout) navigate('/login');
+        if (isLoggedout) navigate('/login');
     }, [isLoggedout]);
 
     const authLinks = (
         <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+                <Link className="nav-link" to={'/dashboard'}>Dashboard</Link>
+            </li>
             <li className="nav-item">
                 <a href="#" onClick={handleLogout} className="nav-link" >
                     <img

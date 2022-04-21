@@ -1,10 +1,14 @@
-import { BrowserRouter as Router, Route, Routes, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser } from './features/authSlice'
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Footer from './components/layout/Footer';
+
+// import 'jquery/dist/jquery.min.js';
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.min.js";
 
 import './App.css';
 import Register from './components/auth/Register';
@@ -17,33 +21,36 @@ import { clearProfile } from './actions/profileActions';
 
 import PrivateRoute from './components/common/PrivateRoute';
 import CreateProfile from './components/create-profile/CreateProfile';
+import EditProfile from './components/edit-profile/EditProfile';
+import AddExperience from './components/add-credentials/AddExperience';
+import AddEducation from './components/add-credentials/AddEducation';
 
 // Check for token
 if (localStorage.getItem(JW_TOKEN)) {
 
   // Set auth token header auth
-  setAuthToken(localStorage.getItem(JW_TOKEN));
+  setAuthToken(localStorage.getItem(JW_TOKEN))
 
   // Decode token and get info user expiration
-  const decodedUserData = jwt_decode(localStorage.getItem(JW_TOKEN));
+  const decodedUserData = jwt_decode(localStorage.getItem(JW_TOKEN))
 
   // Set user and isAuthentictd
-  store.dispatch(setCurrentUser(decodedUserData));
+  store.dispatch(setCurrentUser(decodedUserData))
 
   // Get current timestamp
-  const currentTime = Date.now() / 1000;
+  const currentTime = Date.now() / 1000
 
   // Check for expired token
   if (currentTime > decodedUserData.exp) {
 
     // Logout user
-    store.dispatch(logoutUser());
+    store.dispatch(logoutUser())
 
     // Clear current profile
-    store.dispatch(clearProfile());
+    store.dispatch(clearProfile())
 
     // Redirect to login page on token expiration
-    window.location.href = '/login';
+    window.location.href = '/login'
   }
 
 }
@@ -60,6 +67,9 @@ const App = () => {
           <Route path='/login' element={<Login />} />
           <Route path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           <Route path='/create-profile' element={<PrivateRoute><CreateProfile /></PrivateRoute>} />
+          <Route path='/edit-profile' element={<PrivateRoute><EditProfile /></PrivateRoute>} />
+          <Route path='/add-experience' element={<PrivateRoute><AddExperience /></PrivateRoute>} />
+          <Route path='/add-education' element={<PrivateRoute><AddEducation /></PrivateRoute>} />
         </Routes>
         <Footer />
       </div>
