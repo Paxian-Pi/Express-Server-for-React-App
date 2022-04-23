@@ -17,7 +17,6 @@ const AddEducation = () => {
     const [disabled, setDisabled] = useState(false)
 
     const errors = useSelector((state) => state.error.value)
-    const profile = useSelector((state) => state.profile.value.profile)
 
     const dispatch = useDispatch()
 

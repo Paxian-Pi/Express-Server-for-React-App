@@ -24,6 +24,9 @@ import CreateProfile from './components/create-profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
 import AddExperience from './components/add-credentials/AddExperience';
 import AddEducation from './components/add-credentials/AddEducation';
+import Profiles from './components/profiles/Profiles';
+import Profile from './components/profile/Profile';
+import NotFound from './components/no-found/NotFound';
 
 // Check for token
 if (localStorage.getItem(JW_TOKEN)) {
@@ -65,11 +68,14 @@ const App = () => {
           <Route exact path='/' element={<Landing />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/profiles' element={<Profiles />} />
+          <Route path='/profile/:handle' element={<Profile />} />
           <Route path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           <Route path='/create-profile' element={<PrivateRoute><CreateProfile /></PrivateRoute>} />
           <Route path='/edit-profile' element={<PrivateRoute><EditProfile /></PrivateRoute>} />
           <Route path='/add-experience' element={<PrivateRoute><AddExperience /></PrivateRoute>} />
           <Route path='/add-education' element={<PrivateRoute><AddEducation /></PrivateRoute>} />
+          <Route path='/not-found' element={<NotFound />} />
         </Routes>
         <Footer />
       </div>

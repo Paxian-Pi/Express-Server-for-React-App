@@ -4,8 +4,18 @@ import ShowModalSingleAction from '../components/common/ShowModalSingleAction';
 import { JW_TOKEN } from '../constants';
 import { setCurrentUser } from '../features/authSlice';
 import { getErrors } from '../features/errorSlice';
-import { clearCurrentProfile, getProfile, profileLoading } from '../features/profileSlice';
+import { clearCurrentProfile, getProfile, getProfiles, profileLoading } from '../features/profileSlice';
 import setAuthToken from '../utils/setAuthToken';
+
+// Get all profiles
+export const getAllProfiles = (dispatch) => {
+    dispatch(profileLoading());
+
+    axios
+        .get('/api/profile/all')
+        .then(res => dispatch(getProfiles(res.data)))
+        .catch(err => dispatch(getProfiles(null)));
+}
 
 // Get current profile
 export const getCurrentProfile = (dispatch) => {
@@ -15,6 +25,14 @@ export const getCurrentProfile = (dispatch) => {
         .get('/api/profile')
         .then(res => dispatch(getProfile(res.data)))
         .catch(() => dispatch(getProfile({})));
+}
+
+// Get profile by handle
+export const getProfileByHandle = (handle, dispatch) => {
+    axios
+        .get(`/api/profile/handle/${handle}`)
+        .then(res => dispatch(getProfile(res.data)))
+        .catch(err => dispatch(getProfile(null)));
 }
 
 // Create profile

@@ -24,7 +24,8 @@ export const profileSlice = createSlice({
             state.value.profile = null;
         },
         getProfiles: (state, action) => { 
-            state.value = action.payload;
+            state.value.profiles = action.payload;
+            state.value.loading = false;
         },
     }
 });
