@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Spinner } from 'react-bootstrap';
+import Spinner from '../common/Spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProfiles } from '../../actions/profileActions';
 import ProfileItem from './ProfileItem';
