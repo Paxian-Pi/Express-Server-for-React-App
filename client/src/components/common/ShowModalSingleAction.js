@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Button } from 'react-bootstrap'
 import { Modal } from 'react-bootstrap'
 
-const ShowModalSingleAction = ({ show, title, body, positiveButton, negativeButton, handler }) => {
+const ShowModalSingleAction = ({ show, title, body, buttonText, handler }) => {
     return (
         <div>
             <Modal show={show} onHide={handler}>
@@ -14,18 +14,10 @@ const ShowModalSingleAction = ({ show, title, body, positiveButton, negativeButt
                 }
                 <Modal.Body>{body}</Modal.Body>
                 {
-                    negativeButton &&
+                    buttonText &&
                     <Modal.Footer>
                         <Button className='btn btn-outline-info form-control' onClick={handler}>
-                            {negativeButton}
-                        </Button>
-                    </Modal.Footer>
-                }
-                {
-                    positiveButton &&
-                    <Modal.Footer>
-                        <Button className='btn btn-outline-info form-control' onClick={handler}>
-                            {positiveButton}
+                            {buttonText}
                         </Button>
                     </Modal.Footer>
                 }

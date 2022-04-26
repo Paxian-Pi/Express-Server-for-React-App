@@ -67,7 +67,7 @@ const Register = (props) => {
                 title='Error'
                 body={errors.error}
                 handler={handleClose}
-                positiveButton='Close'
+                buttonText='Close'
             />
         )
     }

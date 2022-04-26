@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import classnames from 'classnames'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { deletePostAction } from '../../actions/postActions'
+import ShowModalSingleAction from '../common/ShowModalSingleAction'
+import { showModal } from '../../features/modalSlice'
 
 const PostItem = ({ post }) => {
 
@@ -10,8 +12,15 @@ const PostItem = ({ post }) => {
 
     const dispatch = useDispatch()
 
-    const onPostDeleteHandler = (e) => {
-        e.preventDefault()
+    const likeHandler = () => {
+        dispatch(showModal(true))      
+    }
+
+    const unlikeHandler = () => {
+        dispatch(showModal(true))
+    }
+
+    const onPostDeleteHandler = () => {
 
         deletePostAction(post._id, dispatch)
         window.location.reload()
@@ -29,14 +38,15 @@ const PostItem = ({ post }) => {
                 </div>
                 <div className="col-md-10">
                     <p className="lead">{post.text}</p>
-                    <button type="button" className="btn btn-light mr-1">
+                    <button onClick={likeHandler} type="button" className="btn btn-light mr-1">
                         <i className="text-info fas fa-thumbs-up"></i>
                         <span className="badge badge-light">{post.likes.length}</span>
                     </button>
-                    <button type="button" className="btn btn-light mr-1">
+                    <button onClick={unlikeHandler} type="button" className="btn btn-light mr-1">
                         <i className="text-secondary fas fa-thumbs-down"></i>
                     </button>
-                    <Link to={`/post/${post._id}`} className="btn btn-info mr-1">Comments</Link>
+                    {/* <Link to={`/post/${post._id}`} className="btn btn-info mr-1">Comments</Link> */}
+                    <Link to={`/not-found`} className="btn btn-info mr-1">Comments</Link>
                     {post.user === auth.user.id ?
                         <button onClick={onPostDeleteHandler} type="button" className="btn btn-danger mr-1">
                             <i className="fas fa-times" />
