@@ -1,4 +1,6 @@
-module.exports = {
-    mongoURI: 'mongodb+srv://mongo:reactMONGO101@react-mongo.bc1tx.mongodb.net/react-app',
-    secretOrKey: 'secret'
+if(process.env.NODE_ENV === 'production') {
+    module.exports = require('./keys_prod')
+}
+else {
+    module.exports = require('./keys_dev')
 }

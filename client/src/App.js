@@ -27,6 +27,7 @@ import AddEducation from './components/add-credentials/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import NotFound from './components/no-found/NotFound';
+import Posts from './components/posts/Posts';
 
 // Check for token
 if (localStorage.getItem(JW_TOKEN)) {
@@ -66,16 +67,17 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route exact path='/' element={<Landing />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/profiles' element={<Profiles />} />
-          <Route path='/profile/:handle' element={<Profile />} />
-          <Route path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-          <Route path='/create-profile' element={<PrivateRoute><CreateProfile /></PrivateRoute>} />
-          <Route path='/edit-profile' element={<PrivateRoute><EditProfile /></PrivateRoute>} />
-          <Route path='/add-experience' element={<PrivateRoute><AddExperience /></PrivateRoute>} />
-          <Route path='/add-education' element={<PrivateRoute><AddEducation /></PrivateRoute>} />
-          <Route path='/not-found' element={<NotFound />} />
+          <Route exact path='/register' element={<Register />} />
+          <Route exact path='/login' element={<Login />} />
+          <Route exact path='/profiles' element={<Profiles />} />
+          <Route exact path='/profile/:handle' element={<Profile />} />
+          <Route exact path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+          <Route exact path='/create-profile' element={<PrivateRoute><CreateProfile /></PrivateRoute>} />
+          <Route exact path='/edit-profile' element={<PrivateRoute><EditProfile /></PrivateRoute>} />
+          <Route exact path='/add-experience' element={<PrivateRoute><AddExperience /></PrivateRoute>} />
+          <Route exact path='/add-education' element={<PrivateRoute><AddEducation /></PrivateRoute>} />
+          <Route exact path='/feed' element={<PrivateRoute><Posts /></PrivateRoute>} />
+          <Route exact path='/not-found' element={<NotFound />} />
         </Routes>
         <Footer />
       </div>

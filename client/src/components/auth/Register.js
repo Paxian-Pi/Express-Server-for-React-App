@@ -49,15 +49,9 @@ const Register = (props) => {
             password2: password2Input.current.value
         }
 
-        // dispatch(register(newUser));
-
         registerUser(newUser, dispatch, navigate)
         setShow(true)
-
-        // axios
-        //     .post('/api/users/register', newUser)
-        //     .then(res => navigate('/login'))
-        //     .catch(err => dispatch(getErrors(err.response.data)));
+        dispatch(getErrors({}))
     }
 
     const [show, setShow] = useState(false);

@@ -41,6 +41,7 @@ const Login = () => {
 
         loginUser(user, dispatch)
         setShow(true)
+        dispatch(getErrors({}))
     }
 
     const [show, setShow] = useState(false);
