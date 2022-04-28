@@ -12,14 +12,17 @@ const Posts = () => {
     const { posts, loading } = useSelector((state) => state.post.value)
 
     const modal = useSelector((state) => state.modal.value)
+    // const [show, setShow] = useState(false)
+    const handleClose = () => dispatch(showModal(false))
+
+    let postContent;
+    let show_modal;
 
     const dispatch = useDispatch()
 
     useEffect(() => {
         getPostAction(dispatch)
     }, [])
-
-    let postContent;
 
     if (posts === null || loading) {
         postContent = <Spinner />
@@ -28,17 +31,11 @@ const Posts = () => {
         postContent = <PostFeed posts={posts} />
     }
 
-    // const [show, setShow] = useState(false)
-    const handleClose = () => dispatch(showModal(false))
-
-    let show_Modal;
-
     if (modal) {
-        console.log(modal)
-        show_Modal = (
+        show_modal = (
             <ShowModalSingleAction
                 show={modal}
-                body='No available now!'
+                body='Not available now!'
                 handler={handleClose}
             />
         )
@@ -50,7 +47,7 @@ const Posts = () => {
                 <div className="continer">
                     <div className="row">
                         <div className="col-md-12">
-                            {show_Modal}
+                            {show_modal}
                             <PostForm />
                             {postContent}
                         </div>

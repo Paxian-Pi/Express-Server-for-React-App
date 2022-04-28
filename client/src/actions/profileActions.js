@@ -1,7 +1,7 @@
 import axios from 'axios'
 // import res from 'express/lib/response';
 import ShowModalSingleAction from '../components/common/ShowModalSingleAction';
-import { JW_TOKEN } from '../constants';
+import { JW_TOKEN } from '../app/constants';
 import { setCurrentUser } from '../features/authSlice';
 import { getErrors } from '../features/errorSlice';
 import { clearCurrentProfile, getProfile, getProfiles, profileLoading } from '../features/profileSlice';

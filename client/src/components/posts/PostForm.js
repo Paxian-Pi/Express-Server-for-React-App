@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addPostAction } from '../../actions/postActions'
@@ -12,6 +12,8 @@ const PostForm = () => {
     const { user } = useSelector((state) => state.auth.value)
 
     const errors = useSelector(state => state.error.value)
+
+    const isUnauthorized = errors === 'Unauthorized'
 
     const dispatch = useDispatch()
 
@@ -30,6 +32,12 @@ const PostForm = () => {
         setPostText('')
         dispatch(getErrors({}))
     }
+
+    useEffect(() => {
+        if(isUnauthorized) {
+            window.location.reload()
+        }
+    }, [isUnauthorized])
 
     return (
         <div className="post-form mb-3">

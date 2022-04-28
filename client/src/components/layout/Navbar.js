@@ -1,8 +1,10 @@
+import jwtDecode from 'jwt-decode';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../actions/authActions'
 import { clearProfile } from '../../actions/profileActions';
+import { redirectToLoginOnTokenExpiration } from '../../app/methods';
 
 function Navbar() {
 
@@ -26,18 +28,23 @@ function Navbar() {
         setIsLoggedout(true);
     }
 
+    const onLinkClickHandler = () => {
+        // Redirect to login, if token expires
+        redirectToLoginOnTokenExpiration()
+    }
+
     // Redirect to login page on logout
     useEffect(() => {
         if (isLoggedout) navigate('/login');
-    }, [isLoggedout]);
+    }, [isLoggedout])
 
     const authLinks = (
         <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-                <Link className="nav-link" to={'/feed'}>Post Feed</Link>
+                <Link onClick={onLinkClickHandler} className="nav-link" to={'/feed'}>Post Feed</Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to={'/dashboard'}>Dashboard</Link>
+                <Link onClick={onLinkClickHandler} className="nav-link" to={'/dashboard'}>Dashboard</Link>
             </li>
             <li className="nav-item">
                 <a href="#" onClick={handleLogout} className="nav-link" >

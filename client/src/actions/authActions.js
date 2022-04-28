@@ -4,7 +4,7 @@ import { getErrors } from '../features/errorSlice'
 import { setCurrentUser } from '../features/authSlice'
 import setAuthToken from "../utils/setAuthToken"
 import jwt_decode from 'jwt-decode'
-import { JW_TOKEN } from '../constants'
+import { JW_TOKEN } from '../app/constants'
 
 // Register User
 export const registerUser = (userData, dispatch, navigate) => {

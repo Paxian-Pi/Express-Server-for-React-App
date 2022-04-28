@@ -19,18 +19,14 @@ const Dashboard = () => {
 
     const { user, isAuthenticated } = useSelector((state) => state.auth.value)
 
+    const isUnauthorized = useSelector(state => state.error.value) === 'Unauthorized'
+
     let dashboardContent;
-
-    // Redirect to login, if not authenticated - (Protected route)
-    // useEffect(() => {
-    //     if(!isAuthenticated) navigate('/login');
-    // }, [!isAuthenticated]);
-
 
     // Load current user profile
     useEffect(() => {
         getCurrentProfile(dispatch);
-    }, []);
+    }, [])
 
     // Delete account
     const onDeleteProfileHandler = () => {

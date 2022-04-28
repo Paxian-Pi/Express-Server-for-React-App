@@ -15,7 +15,7 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
 import store from './app/store';
-import { JW_TOKEN } from './constants'
+import { JW_TOKEN } from './app/constants'
 import { logoutUser } from './actions/authActions';
 import { clearProfile } from './actions/profileActions';
 
@@ -29,37 +29,37 @@ import Profile from './components/profile/Profile';
 import NotFound from './components/no-found/NotFound';
 import Posts from './components/posts/Posts';
 
-// Check for token
-if (localStorage.getItem(JW_TOKEN)) {
-
-  // Set auth token header auth
-  setAuthToken(localStorage.getItem(JW_TOKEN))
-
-  // Decode token and get info user expiration
-  const decodedUserData = jwt_decode(localStorage.getItem(JW_TOKEN))
-
-  // Set user and isAuthentictd
-  store.dispatch(setCurrentUser(decodedUserData))
-
-  // Get current timestamp
-  const currentTime = Date.now() / 1000
-
-  // Check for expired token
-  if (currentTime > decodedUserData.exp) {
-
-    // Logout user
-    store.dispatch(logoutUser())
-
-    // Clear current profile
-    store.dispatch(clearProfile())
-
-    // Redirect to login page on token expiration
-    window.location.href = '/login'
-  }
-
-}
-
 const App = () => {
+
+  // Check for token
+  if (localStorage.getItem(JW_TOKEN)) {
+
+    // Set auth token header auth
+    setAuthToken(localStorage.getItem(JW_TOKEN))
+  
+    // Decode token and get info user expiration
+    const decodedUserData = jwt_decode(localStorage.getItem(JW_TOKEN))
+  
+    // Set user and isAuthentictd
+    store.dispatch(setCurrentUser(decodedUserData))
+  
+    // Get current timestamp
+    const currentTime = Date.now() / 1000
+  
+    // Check for expired token
+    if (currentTime > decodedUserData.exp) {
+
+      // Redirect to login page on token expiration
+      window.location.href = '/login'
+  
+      // Logout user
+      store.dispatch(logoutUser())
+  
+      // Clear current profile
+      store.dispatch(clearProfile())
+    }
+  
+  }
 
   return (
     <Router>
