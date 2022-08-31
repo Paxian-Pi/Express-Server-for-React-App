@@ -5,7 +5,7 @@ import { getAllProfiles } from '../../actions/profileActions';
 import ProfileItem from './ProfileItem';
 
 const Profiles = () => {
-
+    
     const { profiles, loading } = useSelector((state) => state.profile.value)
     // console.log(profiles)
 

@@ -136,7 +136,7 @@ const CreateProfile = () => {
             { label: 'Intern', value: 'Intern' },
             { label: 'Other', value: 'Other' },
         ]
-
+        
         return (
             <div className="create-profile">
                 <div className="container">
@@ -147,7 +147,7 @@ const CreateProfile = () => {
                             <p className="lead text-center">Let's get some information to make your profile stand out</p>
                             <small className="d-block pb-3">* = required field</small>
                             <form onSubmit={submitHandler}>
-
+                                
                                 <TextFieldGroup
                                     placeholder='* Profile Handle'
                                     name='handle'
@@ -156,7 +156,7 @@ const CreateProfile = () => {
                                     error={errors.handle}
                                     info='A unique handle for your profile URL. Your full name, company name'
                                 />
-
+                                
                                 <SelectListGroup
                                     placeholder='Status'
                                     name='status'

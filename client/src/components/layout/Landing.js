@@ -7,12 +7,12 @@ const Landing = () => {
     const navigate = useNavigate();
     
     const isAuthenticated = useSelector((state) => state.auth.value.isAuthenticated);
-
+    
     // Prevent veto navigtion to either Login or Register page, if isAuthenticated
     useEffect(() => {
         if(isAuthenticated) navigate('/dashboard');
     }, [isAuthenticated]);
-
+    
     return (
         <div className="landing">
             <div className="dark-overlay landing-inner text-light">

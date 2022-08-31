@@ -9,18 +9,19 @@ import PostForm from './PostForm'
 
 const Posts = () => {
 
+    const dispatch = useDispatch()
+
     const { posts, loading } = useSelector((state) => state.post.value)
 
     const modal = useSelector((state) => state.modal.value)
-    // const [show, setShow] = useState(false)
+
     const handleClose = () => dispatch(showModal(false))
 
     let postContent;
     let show_modal;
 
-    const dispatch = useDispatch()
-
     useEffect(() => {
+        // Load all posts
         getPostAction(dispatch)
     }, [])
 

@@ -21,11 +21,11 @@ const PostItem = ({ post }) => {
     }
 
     const onPostDeleteHandler = () => {
-
+        
         deletePostAction(post._id, dispatch)
         window.location.reload()
     }
-
+    
     return (
         <div className="card card-body mb-3 m-5">
             <div className="row">

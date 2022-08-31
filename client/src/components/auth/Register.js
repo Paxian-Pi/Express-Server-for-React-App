@@ -48,7 +48,7 @@ const Register = (props) => {
             password: passwordInput.current.value,
             password2: password2Input.current.value
         }
-
+        
         registerUser(newUser, dispatch, navigate)
         setShow(true)
         dispatch(getErrors({}))

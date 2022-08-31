@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { deleteExperience } from '../../actions/profileActions'
 
 const Experience = ({ exp }) => {
-
+    
     const dispatch = useDispatch()
 
     const experience = exp.map(experience => (

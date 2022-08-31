@@ -30,7 +30,7 @@ const AddExperience = () => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-
+        
         const experienceData = {
             company,
             title,
@@ -43,7 +43,7 @@ const AddExperience = () => {
 
         addExperience(experienceData, navigate, dispatch)
     }
-
+    
     return (
         <div className='add-experience'>
             <div className="container">

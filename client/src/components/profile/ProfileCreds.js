@@ -2,7 +2,7 @@ import React from 'react'
 import Moment from 'react-moment'
 
 const ProfileCreds = ({ experience, education }) => {
-
+  
   const expItems = experience.map(exp => (
     <li key={exp._id} className="list-group-item">
       <h4>{exp.company}</h4>

@@ -37,10 +37,8 @@ const EditProfile = () => {
 
     const profile = useSelector((state) => state.profile.value.profile)
 
-
-
-    // Load current user profile
     useEffect(() => {
+        // Load current user profile
         getCurrentProfile(dispatch)
 
         if (profile) {

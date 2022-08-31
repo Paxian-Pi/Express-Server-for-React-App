@@ -8,7 +8,7 @@ import { JW_TOKEN } from '../app/constants'
 
 // Register User
 export const registerUser = (userData, dispatch, navigate) => {
-
+    
     axios
         .post('/api/users/register', userData)
         .then(() => navigate('/login'))
@@ -17,18 +17,18 @@ export const registerUser = (userData, dispatch, navigate) => {
 
 // Login User
 export const loginUser = (userData, dispatch) => {
-
+    
     axios
         .post('/api/users/login', userData)
         .then(res => {
             const { token } = res.data;
-
+            
             //Save token to local storage
             localStorage.setItem(JW_TOKEN, token);
 
             // Set token to Auth Header
             setAuthToken(token);
-
+            
             //Decode token
             const decodedUserData = jwt_decode(token);
 
@@ -42,7 +42,7 @@ export const logoutUser = (dispatch) => {
 
     // Remove token from local storage
     localStorage.removeItem(JW_TOKEN);
-
+    
     // Clear auth header for future requests
     setAuthToken(false);
 

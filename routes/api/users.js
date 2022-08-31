@@ -65,7 +65,7 @@ router.post('/register', (req, res) => {
         });
 });
 
-// @route   GET api/users/login
+// @route   POST api/users/login
 // @desc    Login User / Returning JWT Token
 // @access  public
 router.post('/login', (req, res) => {
@@ -109,8 +109,8 @@ router.post('/login', (req, res) => {
                                 success: true,
                                 token: 'Bearer ' + token
                             });
-                        });
-
+                        }
+                    );
                 }
                 else {
                     errors.error = 'Incorrect password!'
@@ -125,7 +125,7 @@ router.post('/login', (req, res) => {
 // @desc    Return current user
 // @access  private
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-    // res.json({ message: 'Login success!' });
+    
     res.json({
         id: req.user.id,
         name: req.user.name,

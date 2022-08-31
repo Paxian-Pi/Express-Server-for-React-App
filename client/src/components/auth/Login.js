@@ -15,7 +15,7 @@ import ShowModalSingleAction from '../common/ShowModalSingleAction'
 const Login = () => {
 
     const navigate = useNavigate();
-
+    
     const errors = useSelector((state) => state.error.value)
 
     const isAuthenticated = useSelector((state) => state.auth.value.isAuthenticated);
@@ -25,7 +25,7 @@ const Login = () => {
     useEffect(() => {
         if (isAuthenticated) navigate('/dashboard');
     }, [isAuthenticated]);
-
+    
     const dispatch = useDispatch();
 
     const emailInput = useRef();

@@ -16,7 +16,7 @@ const ProfileAbout = ({ about }) => {
       <i className="fa fa-check" /> {skill}
     </div>
   ))
-
+  
   return (
     <div className="row">
       <div className="col-md-12">
